@@ -1,10 +1,9 @@
 body
-    .container
-        header
-            h1 Todo List
-        ul
-            each tasks
-                +task
-
-template(name="task")
-    li #{text}
+  .container
+    header
+      h1 Todo List
+      form.new-task
+        input(type="text" name="text" placeholder="Type to add new tasks")
+    ul
+      each tasks
+        +task
