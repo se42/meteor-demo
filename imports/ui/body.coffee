@@ -1,10 +1,34 @@
 `import { Template } from 'meteor/templating';`
+`import { Tasks } from '../api/tasks.js';`
+
+`import './task.coffee';`
 `import './body.jade';`
 
-tasks = [
-    { text: 'This is task 1'},
-    { text: 'This is task 2'},
-    { text: 'This is task 3'}
-]
+
+# BODY HELPERS
+
+tasks = -> Tasks.find({}, { sort: { createdAt: -1 } })
 
 Template.body.helpers({tasks})
+
+
+# BODY EVENTS
+
+submitNewTask = (event) ->
+  console.log(event)
+  event.preventDefault()
+  target = event.target
+  text = target.text.value
+
+  entry =
+    text: text
+    createdAt: new Date()
+
+  Tasks.insert(entry)
+
+  target.text.value = ''
+
+
+Template.body.events({
+  'submit .new-task': submitNewTask
+  })
