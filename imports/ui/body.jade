@@ -1,0 +1,10 @@
+body
+    .container
+        header
+            h1 Todo List
+        ul
+            each tasks
+                +task
+
+template(name="task")
+    li #{text}
