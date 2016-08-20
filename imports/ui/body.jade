@@ -2,6 +2,9 @@ body
   .container
     header
       h1 Todo List
+      label.hide-completed
+        input(type="checkbox")
+        | Hide Completed Tasks
       form.new-task
         input(type="text" name="text" placeholder="Type to add new tasks")
     ul
