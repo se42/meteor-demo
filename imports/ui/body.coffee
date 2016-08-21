@@ -1,10 +1,10 @@
-`import { Template } from 'meteor/templating';`
-`import { ReactiveDict } from 'meteor/reactive-dict';`
+{ Template } = require 'meteor/templating'
+{ ReactiveDict } = require 'meteor/reactive-dict'
 
-`import { Tasks } from '../api/tasks.js';`
+{ Tasks } = require '../api/tasks.coffee'
 
-`import './task.coffee';`
-`import './body.jade';`
+require './task.coffee'
+require './body.jade'
 
 
 # BODY ONCREATED
