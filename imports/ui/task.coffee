@@ -1,6 +1,6 @@
-`import { Template } from 'meteor/templating';`
-`import { Tasks } from '../api/tasks.js';`
-`import './task.jade';`
+{ Template } = require 'meteor/templating'
+{ Tasks } = require '../api/tasks.coffee'
+require './task.jade'
 
 clickToggleChecked = ->
     Tasks.update(@_id, {$set: { checked: ! @checked }})
