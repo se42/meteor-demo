@@ -14,16 +14,17 @@ Template.body.onCreated(bodyOnCreated = -> @state = new ReactiveDict())
 
 # BODY HELPERS
 
-# tasks = -> Tasks.find({}, { sort: { createdAt: -1 } })
-
 tasks = ->
   instance = Template.instance()
   if instance.state.get('hideCompleted')
-    Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } })
+    Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}})
   else
-    Tasks.find({}, { sort: { createdAt: -1 } })
+    Tasks.find({}, {sort: {createdAt: -1}})
 
-Template.body.helpers({tasks})
+incompleteCount = ->
+  Tasks.find({checked: {$ne: true}}).count()
+
+Template.body.helpers({tasks, incompleteCount})
 
 
 # BODY EVENTS
@@ -38,6 +39,7 @@ submitNewTask = (event) ->
   Tasks.insert(entry)
 
   event.target.text.value = ''
+
 
 changeHideCompletedInput = (event, instance) ->
   instance.state.set('hideCompleted', event.target.checked)
