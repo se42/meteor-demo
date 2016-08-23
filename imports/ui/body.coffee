@@ -10,7 +10,11 @@ require './body.jade'
 
 # BODY ONCREATED
 
-Template.body.onCreated(bodyOnCreated = -> @state = new ReactiveDict())
+Template.body.onCreated(
+  bodyOnCreated = ->
+    @state = new ReactiveDict()
+    Meteor.subscribe('tasks')
+)
 
 
 # BODY HELPERS
