@@ -1,12 +1,13 @@
+{ Meteor } = require 'meteor/meteor'
 { Template } = require 'meteor/templating'
-{ Tasks } = require '../api/tasks.coffee'
+
 require './task.jade'
 
 clickToggleChecked = ->
-    Tasks.update(@_id, {$set: { checked: ! @checked }})
+    Meteor.call('tasks.setChecked', @_id, !@checked)
 
 clickDelete = ->
-    Tasks.remove(@_id)
+    Meteor.call('tasks.remove', @_id)
 
 Template.task.events({
     'click .toggle-checked': clickToggleChecked

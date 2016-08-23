@@ -35,15 +35,7 @@ Template.body.helpers({
 
 submitNewTask = (event) ->
   event.preventDefault()
-
-  entry =
-    text: event.target.text.value
-    createdAt: new Date()
-    owner: Meteor.userId()
-    username: Meteor.user().username
-
-  Tasks.insert(entry)
-
+  Meteor.call('tasks.insert', event.target.text.value)
   event.target.text.value = ''
 
 
