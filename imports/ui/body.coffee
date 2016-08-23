@@ -1,3 +1,4 @@
+{ Meteor } = require 'meteor/meteor'
 { Template } = require 'meteor/templating'
 { ReactiveDict } = require 'meteor/reactive-dict'
 
@@ -24,7 +25,10 @@ tasks = ->
 incompleteCount = ->
   Tasks.find({checked: {$ne: true}}).count()
 
-Template.body.helpers({tasks, incompleteCount})
+Template.body.helpers({
+  tasks
+  incompleteCount
+})
 
 
 # BODY EVENTS
@@ -35,6 +39,8 @@ submitNewTask = (event) ->
   entry =
     text: event.target.text.value
     createdAt: new Date()
+    owner: Meteor.userId()
+    username: Meteor.user().username
 
   Tasks.insert(entry)
 

@@ -3,9 +3,9 @@ template(name="task")
     li.checked
       button.delete &times;
       input.toggle-checked(type="checkbox" checked="#{checked}")
-      span.text #{text}
+      span.text <strong>#{username}</strong> - #{text}
   else
     li
       button.delete &times;
       input.toggle-checked(type="checkbox" checked="#{checked}")
-      span.text #{text}
+      span.text <strong>#{username}</strong> - #{text}
