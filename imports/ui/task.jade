@@ -1,11 +1,11 @@
 template(name="task")
-  if checked
-    li.checked
-      button.delete &times;
-      input.toggle-checked(type="checkbox" checked="#{checked}")
-      span.text <strong>#{username}</strong> - #{text}
-  else
-    li
-      button.delete &times;
-      input.toggle-checked(type="checkbox" checked="#{checked}")
-      span.text <strong>#{username}</strong> - #{text}
+  li(class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}")
+    button.delete &times;
+    input.toggle-checked(type="checkbox" checked="#{checked}")
+    if isOwner
+      button.toggle-private
+        if private
+          | Private
+        else
+          | Public
+    span.text <strong>#{username}</strong> - #{text}
